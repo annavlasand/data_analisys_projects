@@ -5,7 +5,7 @@ bookings = pd.read_csv('bookings.csv', encoding='windows-1251', sep=';')
 bookings.columns = bookings.columns.str.replace(' ', '_')
 bookings.columns = bookings.columns.str.lower()
 
-#Пользователи из каких стран совершили наибольшее число успешных бронирований, укажите топ-5
+#Пользователи из каких стран совершили наибольшее число успешных бронирований, топ-5
 is_canceled = bookings.query('is_canceled == 0').country.value_counts()[:5]
 
 #На сколько ночей в среднем бронируют отели разных типов?
@@ -38,7 +38,12 @@ mean_num = bookings[['adults', 'children', 'babies']].mean()
 bookings['total_kids'] = bookings.children + bookings.babies
 resort = bookings.groupby('hotel').total_kids.mean().round(2).max()
 
-
+#посчитать метрику Churn Rate и как она связана с наличием детей у клиентов
+def has_kids(x):
+    return True if x > 0 else False
+bookings['has_kids'] = bookings.total_kids.apply(has_kids)
+result = bookings[['has_kids', 'is_canceled']].value_counts()/bookings[['has_kids']].value_counts() * 100
+print(result.round(2))
 
 
 
