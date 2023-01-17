@@ -33,6 +33,12 @@ year_2015_2016_2017 = bookings.loc[bookings.query("is_canceled == 1 & hotel == '
 Какая из них имеет наибольшее среднее значение?'''
 mean_num = bookings[['adults', 'children', 'babies']].mean()
 
+'''Создайте колонку total_kids, объединив столбцы children и babies. 
+Для отелей какого типа среднее значение переменной оказалось наибольшим?'''
+bookings['total_kids'] = bookings.children + bookings.babies
+resort = bookings.groupby('hotel').total_kids.mean().round(2).max()
+
+
 
 
 
