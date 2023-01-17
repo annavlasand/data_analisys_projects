@@ -10,4 +10,9 @@ min_pickups = taxi.groupby('borough').agg({'pickups': 'sum'}).idxmin()
 hd_pickups = taxi.groupby(['borough', 'hday']).agg({'pickups': 'mean'})
 #число поездок по месяцам для каждого района
 pickups_by_mon_bor = taxi.groupby(['borough', 'pickup_month'], as_index = False).agg({'pickups': 'sum'}).sort_values(by='pickups', ascending=False)
-print(pickups_by_mon_bor)
+#функция перевода градусов Фаренгейта в Цельсия
+def temp_to_celcius(temp):
+    return (temp - 32) * 5 / 9
+
+
+print(temp_to_celcius(taxi['temp'][:5]))
