@@ -39,9 +39,7 @@ bookings['total_kids'] = bookings.children + bookings.babies
 resort = bookings.groupby('hotel').total_kids.mean().round(2).max()
 
 #посчитать метрику Churn Rate и как она связана с наличием детей у клиентов
-def has_kids(x):
-    return True if x > 0 else False
-bookings['has_kids'] = bookings.total_kids.apply(has_kids)
+bookings['has_kids'] = bookings.total_kids.apply(lambda x: True if x > 0 else False)
 result = bookings[['has_kids', 'is_canceled']].value_counts()/bookings[['has_kids']].value_counts() * 100
 print(result.round(2))
 
