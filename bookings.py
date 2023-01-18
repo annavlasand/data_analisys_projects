@@ -27,7 +27,8 @@ arrival_2017 = bookings.query('arrival_date_year == 2017').arrival_date_month.va
 '''Сгруппируйте данные по годам, а затем проверьте, на какой месяц 
 бронирования отеля типа City Hotel отменялись чаще всего в 2015? 2016? 2017?'''
 year_2015_2016_2017 = bookings.loc[bookings.query("is_canceled == 1 & hotel == 'City Hotel'").index]\
-    .groupby('arrival_date_year').arrival_date_month.value_counts()
+    .groupby('arrival_date_year') \
+    .arrival_date_month.value_counts()
 
 ''''Посмотрите на числовые характеристики трёх колонок: adults, children и babies. 
 Какая из них имеет наибольшее среднее значение?'''
