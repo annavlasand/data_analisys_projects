@@ -10,8 +10,8 @@ from IPython.display import HTML
 style = '<style>svg{width:70% !important;height:70% !important;}</style>'
 HTML(style)
 
-iris_data_train = pd.read_csv('C:\\Users\\anvla\\PycharmProjects\\miniprojects_data_analisys\\train_iris.csv', encoding='windows-1251', sep=',')
-iris_data_test = pd.read_csv('C:\\Users\\anvla\\PycharmProjects\\miniprojects_data_analisys\\test_iris.csv', encoding='windows-1251', sep=',')
+iris_data_train = pd.read_csv('train_iris.csv', encoding='windows-1251', sep=',')
+iris_data_test = pd.read_csv('test_iris.csv', encoding='windows-1251', sep=',')
 
 X_train = iris_data_train.drop(['Unnamed: 0', 'species'], axis=1)
 X_test = iris_data_test.drop(['Unnamed: 0', 'species'], axis=1)
