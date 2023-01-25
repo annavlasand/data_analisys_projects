@@ -38,3 +38,9 @@ for max_depth in max_depth_values:
                                     'cross_val_score': [mean_cross_val_score]})
 
     scores_data = pd.concat([scores_data, temp_score_data])
+
+scores_data_long = pd.melt(scores_data, id_vars=['max_depth'],
+                           value_vars=['train_score', 'test_score', 'cross_val_score'],
+                           var_name='set_type',
+                           value_name='score')
+sns.lineplot(x='max_depth', y='score', hue='set_type', data=scores_data_long)
